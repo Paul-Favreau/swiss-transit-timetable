@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: container-postgres
+    environment:
+      POSTGRES_DB: database_transport
+      POSTGRES_USER: ${USER_BDD}
+      POSTGRES_PASSWORD: ${MDP_BDD}
+    ports:
+      - "127.0.0.1:5431:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+  postgres_data:

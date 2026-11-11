@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: backend
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5431/database_transport
+    username: ${USER_BDD}
+    password: ${MDP_BDD}
+

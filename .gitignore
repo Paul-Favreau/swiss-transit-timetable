@@ -1,0 +1,19 @@
+# Secrets locaux, jamais versionnés (modèle à copier : .env.example)
+.env
+
+# IDE
+.idea
+.vscode/
+
+# Fichiers système (Windows, macOS)
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Claude Code : réglages personnels de la machine
+.claude/settings.local.json
+
+# Fichier de config claude
+/CLAUDE.md
+# Fichier roadmap
+docs/ROADMAP.md
