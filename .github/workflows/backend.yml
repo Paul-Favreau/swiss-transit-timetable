@@ -1,0 +1,38 @@
+# Backend continuous integration: on every push to main, and on every pull request,
+# that touches the backend, GitHub rebuilds the project and runs all the tests.
+name: Backend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend.yml'
+  pull_request:
+    paths:
+      - 'backend/**'
+      - '.github/workflows/backend.yml'
+
+jobs:
+  build:
+    name: Build and tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      # Fetches the repository code onto the CI machine.
+      - uses: actions/checkout@v7
+
+      # Installs the Temurin 25 JDK and caches Maven dependencies between runs.
+      # The cache key is computed from **/pom.xml, so backend/pom.xml is included.
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+
+      # Compiles, runs the tests and builds the jar. The Testcontainers test starts PostgreSQL
+      # in Docker, which is already installed on GitHub's Ubuntu machines.
+      - name: Build and tests
+        run: ./mvnw -B verify
