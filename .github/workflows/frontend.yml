@@ -1,0 +1,45 @@
+# Frontend continuous integration: on every push to main, and on every pull request,
+# that touches the frontend, GitHub reinstalls the dependencies, builds the app and runs the tests.
+name: Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend.yml'
+  pull_request:
+    paths:
+      - 'frontend/**'
+      - '.github/workflows/frontend.yml'
+
+jobs:
+  build:
+    name: Build and tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      # Fetches the repository code onto the CI machine.
+      - uses: actions/checkout@v7
+
+      # Installs Node.js 24 (Angular 22 supports ^24.15.0) and caches npm downloads between runs.
+      # The lock file is not at the repository root, so its path is given explicitly.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      # Installs exactly the versions recorded in package-lock.json (fails if it does not match package.json).
+      - name: Install dependencies
+        run: npm ci
+
+      # Production build, the same one that will be served by nginx later.
+      - name: Build
+        run: npm run build
+
+      # Unit tests with Vitest in Node.js (jsdom), no browser needed. --watch=false: run once and exit.
+      - name: Tests
+        run: npm test -- --watch=false
