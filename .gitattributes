@@ -1,0 +1,5 @@
+# Line endings: LF in the repository and in every working copy, whatever each machine's core.autocrlf says.
+* text=auto eol=lf
+
+# Windows batch scripts (such as backend/mvnw.cmd) keep CRLF.
+*.cmd text eol=crlf
