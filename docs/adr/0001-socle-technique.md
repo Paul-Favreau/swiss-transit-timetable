@@ -24,9 +24,12 @@ Les décisions ci-dessous sont prises ensemble parce qu'elles conditionnent la g
 **Compromis.** Les fonctionnalités utilisées dans le projet (records, sealed, pattern matching, threads virtuels)
 existent déjà en 21. Partir sur 25 ne coûte donc rien, et l'écart avec un projet d'entreprise en 21 reste minime.
 
-**Justification :** _à rédiger_
+**Justification :** Je démarre un nouveau projet, j'ai donc le choix de la version que j'utilise. Je me tourne vers
+la version LTS la plus récente, la 25, qui permet d'avoir un support pendant plus longtemps que si j'utilisais une
+version LTS antérieure.
 
-**Ce que j'y perds :** _à rédiger_
+**Ce que j'y perds :** ne pas utiliser directement la version qui est la plus utilisée en entreprise. Ça ne me coûte
+pas grand-chose d'utiliser la 25, parce que les fonctionnalités que j'utilise sont déjà présentes dans la version 21.
 
 ## 2. Spring Boot 4.1
 
@@ -76,8 +79,9 @@ Testcontainers fait tourner les tests sur le vrai moteur.
 - **Un dépôt :** `backend/`, `frontend/` et `deploy/` réunis.
 
 **Compromis.** Le monorepo donne un seul lien à mettre sur le CV et un seul `docker compose up` pour tout lancer.
-Une CI unique, avec des filtres de chemins, construit seulement ce qui a changé. Le prix : une organisation moins
-réaliste pour une grande équipe, où front et back ont souvent des cycles de livraison séparés.
+Un workflow par partie (`backend.yml`, `frontend.yml`), avec des filtres de chemins, construit seulement ce qui a
+changé. Le prix : une organisation moins réaliste pour une grande équipe, où front et back ont souvent des cycles de
+livraison séparés.
 
 **Justification :** _à rédiger_
 
