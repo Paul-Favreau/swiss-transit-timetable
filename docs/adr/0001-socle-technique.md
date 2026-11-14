@@ -51,15 +51,20 @@ noms.
 ## 3. Maven
 
 **Options**
-- **Gradle :** déjà connu via Android, builds incrémentaux plus rapides, DSL Kotlin.
-- **Maven :** déclaratif, le plus répandu sur les projets Spring en entreprise.
+- **Gradle :** déjà utilisé (Android, alternance), builds incrémentaux plus rapides (d'après les mesures publiées
+  par Gradle), fichier de build écrit en code Kotlin ou Groovy.
+- **Maven :** déjà utilisé (alternance), déclaratif, l'outil de build le plus utilisé par les développeurs Java
+  (67 % d'après l'enquête JetBrains « State of Java 2025 »).
 
-**Compromis.** Maven est moins souple, mais plus prévisible et lisible par n'importe quelle équipe. Il ajoute un
-deuxième outil de build au CV.
+**Compromis.** Maven est moins souple, mais plus prévisible et lisible par n'importe quelle équipe. Les deux outils
+sont déjà connus : le choix ne coûte pas d'apprentissage dans un sens ou dans l'autre.
 
-**Justification :** _à rédiger_
+**Justification :** J'utilise Maven, l'outil de build le plus utilisé par les développeurs Java, pour être le plus
+proche de ce qui se fait en entreprise. Contrairement au choix des versions de Java et de Spring Boot, je compare
+ici deux outils différents, et non deux versions du même : il est donc plus logique de prendre le plus utilisé.
 
-**Ce que j'y perds :** _à rédiger_
+**Ce que j'y perds :** ne pas utiliser un outil aux builds plus rapides. Mais les builds de mon projet sont légers :
+on ne voit pas la différence entre un build Maven et un build Gradle.
 
 ## 4. PostgreSQL
 
