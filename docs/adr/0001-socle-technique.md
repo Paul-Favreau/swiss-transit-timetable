@@ -34,15 +34,19 @@ pas grand-chose d'utiliser la 25, parce que les fonctionnalités que j'utilise s
 ## 2. Spring Boot 4.1
 
 **Options**
-- **Spring Boot 3.5 :** la dernière 3.x, celle des projets existants, mais en fin de support open source.
-- **Spring Boot 4.1 :** la ligne supportée.
+- **Spring Boot 3.5 :** la dernière 3.x, celle des projets existants. Son support open source s'est arrêté le
+  30 juin 2026 ; seul un support commercial payant continue, jusqu'en juin 2032.
+- **Spring Boot 4.1 :** la ligne actuelle, avec un support open source jusqu'en juillet 2027.
 
 **Compromis.** La 4.x apporte Jakarta EE 11, Jackson 3, des starters plus modulaires et les annotations de nullité
 JSpecify. La plupart des entreprises sont encore en 3.x, voire en 2.x : connaître les différences devient un argument.
 
-**Justification :** _à rédiger_
+**Justification :** J'utilise la version 4.1 pour avoir une version supportée, contrairement aux versions 3.x, qui
+n'ont plus de support open source.
 
-**Ce que j'y perds :** _à rédiger_
+**Ce que j'y perds :** apprendre Spring Boot directement en 4.1, alors que la plupart des entreprises sont en 3.x.
+La perte est mineure : entre la 3.x et la 4.1, les concepts restent les mêmes, il s'agit surtout de changements de
+noms.
 
 ## 3. Maven
 
