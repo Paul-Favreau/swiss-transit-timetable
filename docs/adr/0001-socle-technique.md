@@ -12,9 +12,6 @@ et chaque choix doit pouvoir se défendre en entretien.
 
 Les décisions ci-dessous sont prises ensemble parce qu'elles conditionnent la génération du projet.
 
-> Les parties « Justification » et « Ce que j'y perds » sont à rédiger par Paul avec ses propres mots,
-> en 2 ou 3 phrases chacune. C'est l'exercice : si tu ne sais pas l'écrire, tu ne sauras pas le dire en entretien.
-
 ## 1. Java 25 LTS
 
 **Options**
@@ -118,10 +115,14 @@ gênant dans un projet où je suis seul : c'est moi qui fais tous les commits.
 - **Flux national dès le départ :** on est tout de suite sur le volume réel.
 - **Une région (TL Lausanne ou TPG Genève) :** jusqu'à l'import Spring Batch.
 
-**Compromis.** Une région s'importe en quelques secondes et permet d'itérer vite pendant J1 à J3. Le risque est de
-découvrir tard les problèmes de volume, mais c'est justement le sujet de J4, et l'import naïf mesuré en J1 en donnera
-un avant-goût.
+**Compromis.** Une région ne représente qu'une partie du flux : elle s'importe plus rapidement, ce qui permet
+d'itérer vite pendant J1 à J3 (sa durée d'import sera mesurée en J1). Le risque est de découvrir tard les problèmes
+de volume, mais c'est justement le sujet de J4, et l'import naïf mesuré en J1 en donnera un avant-goût. Conséquence :
+J4 étant hors de la v1, la démo de la v1 ne couvrira qu'une région.
 
-**Justification :** _à rédiger_
+**Justification :** Je travaille sur une seule région : il y a moins de données à traiter, donc les imports sont
+plus courts, et le temps gagné peut être consacré au développement.
 
-**Ce que j'y perds :** _à rédiger_
+**Ce que j'y perds :** un volume de données moins réaliste que celui d'une entreprise. La perte reste acceptable :
+le code est pensé dès le départ pour le volume d'un pays entier, et je peux montrer à un recruteur ce que j'ai mis
+en place pour le gérer, même si la base ne contient qu'une région pour l'instant.
