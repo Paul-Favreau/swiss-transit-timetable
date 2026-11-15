@@ -69,17 +69,28 @@ on ne voit pas la différence entre un build Maven et un build Gradle.
 ## 4. PostgreSQL
 
 **Options**
-- **MySQL/MariaDB :** très répandu.
-- **PostgreSQL :** également répandu, avec des atouts propres au projet.
+- **MySQL/MariaDB :** très répandu, deuxième derrière PostgreSQL (MySQL : 39,6 % des développeurs professionnels,
+  enquête Stack Overflow 2025).
+- **PostgreSQL :** déjà utilisé (projets précédents), la base la plus utilisée par les développeurs professionnels
+  (58,2 %, même enquête), avec des extensions utiles au projet.
 - **H2 :** en mémoire, réservé aux tests.
 
-**Compromis.** PostgreSQL offre `COPY` pour l'import massif de `stop_times`, l'extension `pg_trgm` pour la recherche
-d'arrêts approximative, et PostGIS pour les arrêts proches plus tard. H2 est écarté y compris pour les tests :
-Testcontainers fait tourner les tests sur le vrai moteur.
+**Compromis.** Pour l'import massif de `stop_times`, PostgreSQL a `COPY`, mais MySQL a un équivalent, `LOAD DATA`
+(environ 20 fois plus rapide que des `INSERT`, d'après son manuel) : ce n'est donc pas ce qui les départage. De même
+pour les arrêts proches, plus tard : PostgreSQL a PostGIS, mais MySQL calcule aussi des distances (`ST_Distance_Sphere`).
+Ce qui les distingue pour le projet : si une migration Flyway échoue, PostgreSQL l'annule en entier, y compris les
+`CREATE TABLE` et `ALTER TABLE`. MySQL valide chacune de ces instructions dès qu'elle s'exécute : ce qui est passé
+reste à défaire à la main. PostgreSQL apporte aussi l'extension `pg_trgm` pour la recherche d'arrêts approximative,
+là où MySQL propose un index plein texte n-gram, conçu pour le chinois, le japonais et le coréen. H2 est écarté y
+compris pour les tests : Testcontainers fait tourner les tests sur le vrai moteur.
 
-**Justification :** _à rédiger_
+**Justification :** Les deux options sont intéressantes et peuvent fonctionner pour mon projet. Je choisis
+PostgreSQL parce que c'est la base la plus utilisée par les développeurs professionnels, et le système de gestion de
+base de données que je connais le mieux, pour l'avoir utilisé dans mes projets précédents. Des fonctionnalités comme
+`pg_trgm` me seront aussi utiles, pour la recherche approximative d'arrêts.
 
-**Ce que j'y perds :** _à rédiger_
+**Ce que j'y perds :** l'apprentissage de MySQL. La perte est minime : les deux se basent sur le même langage, SQL,
+et je n'aurais pas grand-chose à réapprendre.
 
 ## 5. Monorepo
 
