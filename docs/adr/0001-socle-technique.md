@@ -95,17 +95,22 @@ et je n'aurais pas grand-chose à réapprendre.
 ## 5. Monorepo
 
 **Options**
-- **Deux dépôts :** backend et frontend séparés.
-- **Un dépôt :** `backend/`, `frontend/` et `deploy/` réunis.
+- **Deux dépôts :** backend et frontend séparés, chacun avec son historique, ses versions et sa CI.
+- **Un dépôt (monorepo) :** `backend/` et `frontend/` réunis, avec le `docker-compose.yml` à la racine.
 
-**Compromis.** Le monorepo donne un seul lien à mettre sur le CV et un seul `docker compose up` pour tout lancer.
-Un workflow par partie (`backend.yml`, `frontend.yml`), avec des filtres de chemins, construit seulement ce qui a
-changé. Le prix : une organisation moins réaliste pour une grande équipe, où front et back ont souvent des cycles de
-livraison séparés.
+**Compromis.** Le monorepo donne un seul lien à mettre sur le CV, et un seul `docker compose up` lancera toute la
+stack en J3 (aujourd'hui, il lance PostgreSQL). Une modification de l'API et du front qui l'utilise tient dans un seul
+commit. Le prix : la CI doit filtrer les chemins pour ne construire que ce qui a changé (c'est fait : un workflow par
+partie, `backend.yml` et `frontend.yml`), et les deux parties partagent le même historique et les mêmes tags de
+version. Ce n'est pas réservé aux petits projets : Google utilise un dépôt unique pour des dizaines de milliers de
+développeurs (Potvin et Levenberg, Communications of the ACM, 2016).
 
-**Justification :** _à rédiger_
+**Justification :** Le monorepo est plus adapté à un projet vitrine : je le mets sur mon CV avec un seul lien. Il
+me facilite aussi le développement : toute l'application se lancera en une seule commande, sans gros travail de
+coordination entre deux dépôts.
 
-**Ce que j'y perds :** _à rédiger_
+**Ce que j'y perds :** un historique moins lisible, puisque les commits des deux parties se mélangent. C'est moins
+gênant dans un projet où je suis seul : c'est moi qui fais tous les commits.
 
 ## 6. Données de développement : un sous-ensemble régional jusqu'à J4
 
